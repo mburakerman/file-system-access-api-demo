@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>File System Access API Demo</title>
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+	<div class="container mx-auto mt-5">
+		<h4 class="mb-4">📁 File System Access API</h4>
+		<p>With File System Access API, we can save file to disk!</p>
+		<div class="form-group">
+			<textarea class="form-control" id="textArea" rows="3"
+				placeholder="your file content will show up here"></textarea>
+		</div>
+		<div class="form-group">
+			<p id="fileName"> </p>
+			<p id="info"></p>
+		</div>
+		<div class="form-group">
+			<button class="btn btn-dark mr-2" id="getFileHandleButton">Pick a .txt file</button>
+			<button class="btn btn-success" id="writeFileButton">Save changes</button>
+		</div>
+	</div>
+
+	<script>
+		let fileHandle;
+		let contents;
+		let file;
+
+		// file picker
+		async function getFileHandle() {
+			const options = {
+				types: [
+					{
+						description: "Text Files",
+						accept: {
+							"text/plain": [".txt"]
+						}
+					}
+				]
+			};
+			[fileHandle] = await window.showOpenFilePicker(options);
+			file = await fileHandle.getFile();
+			fileName.innerHTML = '🔥 Now you can edit ' + file.name + ' and save it to disk.';
+			contents = await file.text();
+			textArea.value = contents;
+		}
+
+		// write file
+		async function writeFile(fileHandle, contents) {
+			// Create a FileSystemWritableFileStream to write to.
+			const writable = await fileHandle.createWritable();
+			// Write the contents of the file to the stream.
+			await writable.write(contents);
+			// Close the file and write the contents to disk.
+			await writable.close();
+		}
+
+
+		// button clicks
+		getFileHandleButton.addEventListener("click", getFileHandle);
+		writeFileButton.addEventListener("click", _ => {
+			writeFile(fileHandle, textArea.value).
+				then(function () {
+					info.textContent = "🎉 Successfully saved to disk!"
+				})
+		});
+
+	</script>
+</body>
+
+</html>
