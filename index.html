@@ -10,19 +10,50 @@
 <body>
 
 	<div class="container mx-auto mt-5">
-		<h4 class="mb-4">📁 File System Access API</h4>
-		<p>With File System Access API, we can save file to disk!</p>
-		<div class="form-group">
-			<textarea class="form-control" id="textArea" rows="3"
-				placeholder="your file content will show up here"></textarea>
-		</div>
-		<div class="form-group">
-			<p id="fileName"> </p>
-			<p id="info"></p>
-		</div>
-		<div class="form-group">
-			<button class="btn btn-dark mr-2" id="getFileHandleButton">Pick a .txt file</button>
-			<button class="btn btn-success" id="writeFileButton">Save changes</button>
+		<div class="row">
+
+
+			<div class="col-lg-8 offset-lg-2 col-md-12">
+				<h4 class="mb-4">📁 File System Access API</h4>
+				<p>With File System Access API, we can save file to disk! <br>
+					In this demo, i am using .txt to demonstrate but any file can be
+					used.</p>
+				<blockquote class="blockquote">
+					<p class="blockquote-footer">The File System Access API (formerly known as Native File System API
+						and
+						prior to that it was
+						called Writeable Files API) enables developers to build powerful web apps that interact with
+						files
+						on
+						the user's local device, like IDEs, photo and video editors, text editors, and more. After a
+						user
+						grants
+						a web app access, this API allows them to read or save changes directly to files and folders on
+						the
+						user's device. Beyond reading and writing files, the File System Access API provides the ability
+						to
+						open
+						a directory and enumerate its contents.</p>
+				</blockquote>
+				<p>For more info: <a href="https://web.dev/file-system-access/" target="_blank"
+						rel="external">https://web.dev/file-system-access/</a> </p>
+				<div class="alert alert-secondary" role="alert">
+					Try on Chrome 86 and above.
+				</div>
+				<div class="form-group">
+					<textarea class="form-control" id="textArea" rows="3"
+						placeholder="your file content will show up here"></textarea>
+				</div>
+				<div class="form-group">
+					<p id="fileName"> </p>
+					<p id="info"></p>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-dark mr-2" id="getFileHandleButton">Pick a .txt file</button>
+					<button class="btn btn-success" id="writeFileButton">Save changes</button>
+				</div>
+
+			</div>
 		</div>
 	</div>
 
